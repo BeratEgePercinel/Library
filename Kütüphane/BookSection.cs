@@ -2,9 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Kütüphane
+namespace Library
 {
-    class Kitap_KitapBölümü
+    public class BookSection
     {
+        public int Id { get; set; }
+        public int BookId { get; set; }
+        public Book Book { get; set; }
+        public int SectionId { get; set; }
+        public Section Section { get; set; }
     }
 }

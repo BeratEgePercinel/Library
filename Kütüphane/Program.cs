@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Kütüphane
+namespace Library
 {
     class Program
     {
