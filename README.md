@@ -5,3 +5,15 @@ Let's design a library database. The project definitions for the Istanbul metrop
 The database solution of the above problem is as follows:
 
 ![image](https://user-images.githubusercontent.com/119699844/218276262-ad362069-49ab-4425-86c3-ff19269d6157.png)
+
+create table Worker( Id int primary key IDENTITY (1,1), WorkerName varchar (100), Surname varchar (100), PhoneNumber varchar(10), Salary float );
+
+create table Book( Id int primary key IDENTITY (1,1), BookTitle varchar(100), Author varchar(100), PageNumber int, PublishDate date );
+
+create table Episode( Id int primary key IDENTITY (1,1), EpisodeName varchar(100), BookId int, FOREIGN KEY (BookId) REFERENCES Book(Id) );
+
+create table Section( Id int primary key IDENTITY (1,1), SectionName varchar(100), FloorId int, WorkerId int, FOREIGN KEY (FloorId) REFERENCES LibraryFloor(Id), FOREIGN KEY (WorkerId) REFERENCES Worker(Id) );
+
+create table LibraryFloor( Id int primary key IDENTITY (1,1), Area float, FloorType varchar(50), Capacity int, Nickname character varying(100) );
+
+create table BookSection( Id int primary key IDENTITY (1,1), BookSectionName varchar(100), BookId int, SectionId int, FOREIGN KEY(BookId) REFERENCES Book(Id), FOREIGN KEY(SectionId) REFERENCES Section(Id) );
