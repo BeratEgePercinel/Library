@@ -17,3 +17,26 @@ create table Section( Id int primary key IDENTITY (1,1), SectionName varchar(100
 create table LibraryFloor( Id int primary key IDENTITY (1,1), Area float, FloorType varchar(50), Capacity int, Nickname character varying(100) );
 
 create table BookSection( Id int primary key IDENTITY (1,1), BookSectionName varchar(100), BookId int, SectionId int, FOREIGN KEY(BookId) REFERENCES Book(Id), FOREIGN KEY(SectionId) REFERENCES Section(Id) );
+
+--The book sections of the workers called Ahmet
+
+SELECT DISTINCT(Book.Name) FROM Employee, Section, BookSection, Book
+WHERE Employee.Id = Section.EmployeeId
+AND   Section.Id = BookSection.SectionId
+AND   BookSection.BookId = Book.Id
+AND   Employee.Name = 'Ahmet'
+
+--Library floor of the workers called Ahmet
+
+SELECT Floor.Nickname FROM Employee, Section, Floor
+WHERE Employee.Id = Section.EmployeeId
+AND   Section.FloorId = Floor.Id
+AND   Employee.Name = 'Ahmet'
+
+--Book names of the library floor called 'Giriş'
+
+SELECT Book.Name FROM Floor, Section, BookSection, Book
+WHERE Floor.Id = Section.FloorId
+AND   Section.Id = BookSection.SectionId
+AND   Book.Id = BookSection.BookId
+AND   Floor.Nickname = 'giriş'
